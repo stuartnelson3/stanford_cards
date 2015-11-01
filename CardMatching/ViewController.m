@@ -14,6 +14,7 @@
 @property (strong, nonatomic) Deck *deck;
 @property (nonatomic, strong) CardMatchingGame *game;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @end
 
 @implementation ViewController
@@ -34,23 +35,24 @@
 - (void)viewDidLoad {
 }
 
-
 - (IBAction)touchCardButton:(UIButton *)sender
 {
     int cardIndex = [self.cardButtons indexOfObject:sender];
     [self.game chooseCardAtIndex:cardIndex];
+    NSLog(@"index %d: %@", cardIndex, [self.game cardAtIndex:cardIndex]);
     [self updateUI];
 }
 
 - (void)updateUI
 {
     for (UIButton *button in self.cardButtons) {
-        int cardIndex = [self.cardButtons indexOfObject:button];
+        int cardIndex = (int)[self.cardButtons indexOfObject:button];
         Card *card = [self.game cardAtIndex:cardIndex];
         [button setTitle:[self titleForCard:card] forState:UIControlStateNormal];
         [button setBackgroundImage:[self backgroundImageForCard:card] forState:UIControlStateNormal];
         button.enabled = !card.isMatched;
     }
+    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", (long)self.game.score];
 }
 
 - (NSString *)titleForCard:(Card *)card
@@ -60,7 +62,7 @@
 
 - (UIImage *)backgroundImageForCard:(Card *)card
 {
-    return [UIImage imageNamed: card.isChosen ? @"cardfront" : @"cardback"];
+    return [UIImage imageNamed: card.isChosen ? @"front" : @"back"];
 }
 
 @end
