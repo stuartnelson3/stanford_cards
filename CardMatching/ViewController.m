@@ -14,6 +14,8 @@
 @property (strong, nonatomic) Deck *deck;
 @property (nonatomic, strong) CardMatchingGame *game;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
+@property (weak, nonatomic) IBOutlet UIButton *resetButton;
+- (IBAction)resetGame:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @end
 
@@ -39,8 +41,15 @@
 {
     int cardIndex = [self.cardButtons indexOfObject:sender];
     [self.game chooseCardAtIndex:cardIndex];
-    NSLog(@"index %d: %@", cardIndex, [self.game cardAtIndex:cardIndex]);
     [self updateUI];
+}
+
+
+- (IBAction)resetGame:(id)sender
+{
+    _game = nil;
+    [self updateUI];
+    NSLog(@"reset game");
 }
 
 - (void)updateUI

@@ -181,6 +181,25 @@
                                     <action selector="touchCardButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="v2i-9e-Ohv"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mfA-iM-PbV">
+                                <rect key="frame" x="83" y="518" width="155" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Reset Game">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ov8-t9-rJH">
+                                <rect key="frame" x="83" y="518" width="155" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Reset Game">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetGame:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="iOP-5b-cjV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="0.25098040699958801" alpha="1" colorSpace="calibratedRGB"/>
@@ -218,6 +237,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="resetButton" destination="ov8-t9-rJH" id="jT1-v5-R0f"/>
                         <outlet property="scoreLabel" destination="f48-HM-pRP" id="1ae-Sw-QvL"/>
                         <outletCollection property="cardButtons" destination="0AU-Td-oTI" id="bPi-7y-5vx"/>
                         <outletCollection property="cardButtons" destination="nte-C7-A6j" id="Ebf-e5-HdV"/>
@@ -235,7 +255,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="173.33333333333334" y="352.15999999999997"/>
+            <point key="canvasLocation" x="173" y="352"/>
         </scene>
     </scenes>
     <resources>
