@@ -11,6 +11,8 @@
 @interface CardMatchingGame()
 @property (nonatomic, readwrite) NSInteger score;
 @property (nonatomic, strong) NSMutableArray *cards;
+@property (nonatomic, strong) NSString *mode;
+@property (nonatomic, strong) NSArray *modes;
 @end
 
 @implementation CardMatchingGame
@@ -48,6 +50,14 @@ static const int COST_TO_CHOOSE = 1;
     }
 }
 
+- (void)setMode:(NSString *)mode
+{
+    if ([self.modes indexOfObject:mode] == NSNotFound) {
+        _mode = [self.modes firstObject];
+    }
+    _mode = mode;
+}
+
 - (NSMutableArray *)cards
 {
     if (!_cards) _cards = [[NSMutableArray alloc] init];
@@ -58,6 +68,8 @@ static const int COST_TO_CHOOSE = 1;
 {
     self = [super init];
     if (!self) return self;
+    
+    _modes = @[@"twoCard", @"threeCard"];
     
     for (int i = 0; i < count; i++) {
         Card *card = [deck drawRandomCard];

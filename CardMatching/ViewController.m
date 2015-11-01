@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *resetButton;
 - (IBAction)resetGame:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+- (IBAction)switchGameMode:(id)sender;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *gameMode;
 @end
 
 @implementation ViewController
@@ -74,4 +76,13 @@
     return [UIImage imageNamed: card.isChosen ? @"front" : @"back"];
 }
 
+- (IBAction)switchGameMode:(id)sender {
+    if (self.gameMode.selectedSegmentIndex == 0) {
+        // 2 card mode
+        [self.game setMode:@"twoCard"];
+    } else if (self.gameMode.selectedSegmentIndex == 1) {
+        // 3 card mode
+        [self.game setMode:@"threeCard"];
+    }
+}
 @end
