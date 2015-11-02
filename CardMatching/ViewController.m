@@ -46,6 +46,11 @@ typedef NS_ENUM(NSUInteger, SelectedSegmentIndex) {
 
 - (IBAction)touchCardButton:(UIButton *)sender
 {
+    if (self.gameMode.userInteractionEnabled) {
+        self.gameMode.userInteractionEnabled = NO;
+        self.gameMode.tintColor = [UIColor grayColor];
+    }
+    
     int cardIndex = [self.cardButtons indexOfObject:sender];
     [self.game chooseCardAtIndex:cardIndex];
     [self updateUI];
@@ -56,6 +61,8 @@ typedef NS_ENUM(NSUInteger, SelectedSegmentIndex) {
 {
     _game = nil;
     [self updateUI];
+    self.gameMode.userInteractionEnabled = YES;
+    self.gameMode.tintColor = [UIColor whiteColor];
 }
 
 - (void)updateUI
