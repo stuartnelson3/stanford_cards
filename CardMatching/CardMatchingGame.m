@@ -12,13 +12,13 @@
 @property (nonatomic, readwrite) NSInteger score;
 @property (nonatomic, strong) NSMutableArray *cards;
 @property (nonatomic, strong) NSString *mode;
-@property (nonatomic, strong) NSArray *modes;
 @end
 
 @implementation CardMatchingGame
 
 static const int MISMATCH_PENALTY = 2;
-static const int MATCH_BONUS = 4;
+static const int MATCH_BONUS_TWO_CARD = 4;
+static const int MATCH_BONUS_THREE_CARD = 6;
 static const int COST_TO_CHOOSE = 1;
 
 - (void)chooseCardAtIndex:(NSUInteger)index
@@ -29,20 +29,10 @@ static const int COST_TO_CHOOSE = 1;
         if (card.isChosen) {
             card.chosen = NO;
         } else {
-            // match against another card
-            for (Card *otherCard in self.cards) {
-                if (otherCard.isChosen && !otherCard.isMatched) {
-                    int matchScore = [card match:@[otherCard]];
-                    if (matchScore) {
-                        self.score += matchScore * MATCH_BONUS;
-                        card.matched = YES;
-                        otherCard.matched = YES;
-                    } else {
-                        self.score -= MISMATCH_PENALTY;
-                        otherCard.chosen = NO;
-                    }
-                    break;
-                }
+            if ([self isTwoCardMode]) {
+                [self twoCardChoose:card];
+            } else if ([self isThreeCardMode]) {
+                [self threeCardChoose:card];
             }
             self.score -= COST_TO_CHOOSE;
             card.chosen = YES;
@@ -50,12 +40,71 @@ static const int COST_TO_CHOOSE = 1;
     }
 }
 
-- (void)setMode:(NSString *)mode
+- (void)threeCardChoose:(Card *)card
 {
-    if ([self.modes indexOfObject:mode] == NSNotFound) {
-        _mode = [self.modes firstObject];
+    Card *pcard;
+    int pmatch = 0;
+    for (Card *otherCard in self.cards) {
+        if (otherCard.isChosen && !otherCard.isMatched) {
+            if (pcard == nil) {
+                pcard = otherCard;
+                pmatch = [card match:@[pcard]];
+                continue;
+            }
+            
+            int matchScore = [card match:@[otherCard]];
+            if (matchScore || pmatch) {
+                if (pcard != nil) {
+                    self.score += (matchScore + pmatch) * MATCH_BONUS_THREE_CARD;
+                    card.matched = YES;
+                    otherCard.matched = YES;
+                    pcard.matched = YES;
+                }
+            } else {
+                self.score -= MISMATCH_PENALTY;
+                otherCard.chosen = NO;
+                pcard.chosen = NO;
+            }
+        }
     }
-    _mode = mode;
+}
+
+- (void)twoCardChoose:(Card *)card
+{
+    for (Card *otherCard in self.cards) {
+        if (otherCard.isChosen && !otherCard.isMatched) {
+            int matchScore = [card match:@[otherCard]];
+            if (matchScore) {
+                self.score += matchScore * MATCH_BONUS_TWO_CARD;
+                card.matched = YES;
+                otherCard.matched = YES;
+            } else {
+                self.score -= MISMATCH_PENALTY;
+                otherCard.chosen = NO;
+            }
+            break;
+        }
+    }
+}
+
+- (void)twoCardMode
+{
+    _mode = @"twoCardMode";
+}
+
+- (BOOL)isTwoCardMode
+{
+    return [_mode isEqual: @"twoCardMode"];
+}
+
+- (void)threeCardMode
+{
+    _mode = @"threeCardMode";
+}
+
+- (BOOL)isThreeCardMode
+{
+    return [_mode isEqual: @"threeCardMode"];
 }
 
 - (NSMutableArray *)cards
@@ -69,7 +118,7 @@ static const int COST_TO_CHOOSE = 1;
     self = [super init];
     if (!self) return self;
     
-    _modes = @[@"twoCard", @"threeCard"];
+    [self twoCardMode];
     
     for (int i = 0; i < count; i++) {
         Card *card = [deck drawRandomCard];

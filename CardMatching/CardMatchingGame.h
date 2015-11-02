@@ -16,7 +16,8 @@
 - (void)chooseCardAtIndex:(NSUInteger)index;
 - (Card *)cardAtIndex:(NSUInteger)index;
 
-- (void)setMode:(NSString *)mode;
+- (void)twoCardMode;
+- (void)threeCardMode;
 
 @property (nonatomic, readonly) NSInteger score;
 

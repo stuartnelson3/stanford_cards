@@ -21,6 +21,11 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *gameMode;
 @end
 
+typedef NS_ENUM(NSUInteger, SelectedSegmentIndex) {
+    SelectedSegmentIndexTwoCard = 0,
+    SelectedSegmentIndexThreeCard = 1,
+};
+
 @implementation ViewController
 
 - (CardMatchingGame *)game
@@ -51,7 +56,6 @@
 {
     _game = nil;
     [self updateUI];
-    NSLog(@"reset game");
 }
 
 - (void)updateUI
@@ -76,13 +80,15 @@
     return [UIImage imageNamed: card.isChosen ? @"front" : @"back"];
 }
 
-- (IBAction)switchGameMode:(id)sender {
-    if (self.gameMode.selectedSegmentIndex == 0) {
-        // 2 card mode
-        [self.game setMode:@"twoCard"];
-    } else if (self.gameMode.selectedSegmentIndex == 1) {
-        // 3 card mode
-        [self.game setMode:@"threeCard"];
+- (IBAction)switchGameMode:(id)sender
+{
+    switch (self.gameMode.selectedSegmentIndex) {
+        case SelectedSegmentIndexTwoCard:
+            [self.game twoCardMode];
+            break;
+        case SelectedSegmentIndexThreeCard:
+            [self.game threeCardMode];
+            break;
     }
 }
 @end
