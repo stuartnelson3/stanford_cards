@@ -1,15 +1,13 @@
 //
-//  ViewController.h
+//  MatchingCardGameViewController.h
 //  CardMatching
 //
-//  Created by Stuart Nelson on 8/3/15.
-//  Copyright (c) 2015 Stuart Nelson. All rights reserved.
+//  Created by Stuart Nelson on 11/14/15.
+//  Copyright © 2015 Stuart Nelson. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "GenericCardGameViewController.h"
 
-@interface MatchingCardGameViewController : UIViewController
-
+@interface MatchingCardGameViewController : GenericCardGameViewController
 
 @end
-
