@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		830503951BF779C900F13FC5 /* MatchingCardGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 830503941BF779C900F13FC5 /* MatchingCardGameViewController.m */; };
+		830503981BF77C3200F13FC5 /* SetCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 830503971BF77C3200F13FC5 /* SetCard.m */; };
+		8305039B1BF7A5C900F13FC5 /* SetDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 8305039A1BF7A5C900F13FC5 /* SetDeck.m */; };
 		83B0D72B1BE3B1A300451E64 /* CardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B0D72A1BE3B1A300451E64 /* CardMatchingGame.m */; };
 		83EF2AE81B6FFF3D00FEEB3A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EF2AE71B6FFF3D00FEEB3A /* main.m */; };
 		83EF2AEB1B6FFF3D00FEEB3A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83EF2AEA1B6FFF3D00FEEB3A /* AppDelegate.m */; };
@@ -35,6 +37,10 @@
 /* Begin PBXFileReference section */
 		830503931BF779C900F13FC5 /* MatchingCardGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchingCardGameViewController.h; sourceTree = "<group>"; };
 		830503941BF779C900F13FC5 /* MatchingCardGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchingCardGameViewController.m; sourceTree = "<group>"; };
+		830503961BF77C3200F13FC5 /* SetCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCard.h; sourceTree = "<group>"; };
+		830503971BF77C3200F13FC5 /* SetCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCard.m; sourceTree = "<group>"; };
+		830503991BF7A5C900F13FC5 /* SetDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetDeck.h; sourceTree = "<group>"; };
+		8305039A1BF7A5C900F13FC5 /* SetDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetDeck.m; sourceTree = "<group>"; };
 		83B0D7291BE3B1A300451E64 /* CardMatchingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardMatchingGame.h; sourceTree = "<group>"; };
 		83B0D72A1BE3B1A300451E64 /* CardMatchingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardMatchingGame.m; sourceTree = "<group>"; };
 		83EF2AE21B6FFF3D00FEEB3A /* CardMatching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardMatching.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,12 +116,16 @@
 				83EF2AEF1B6FFF3D00FEEB3A /* Main.storyboard */,
 				83EF2B0B1B70032D00FEEB3A /* Card.h */,
 				83EF2B0C1B70032D00FEEB3A /* Card.m */,
+				830503961BF77C3200F13FC5 /* SetCard.h */,
+				830503971BF77C3200F13FC5 /* SetCard.m */,
 				83EF2B0E1B7003DB00FEEB3A /* PlayingCard.h */,
 				83EF2B0F1B7003DB00FEEB3A /* PlayingCard.m */,
 				83EF2B111B70063900FEEB3A /* Deck.h */,
 				83EF2B121B70063900FEEB3A /* Deck.m */,
 				83EF2B141B70C8A100FEEB3A /* PlayingCardDeck.h */,
 				83EF2B151B70C8A100FEEB3A /* PlayingCardDeck.m */,
+				830503991BF7A5C900F13FC5 /* SetDeck.h */,
+				8305039A1BF7A5C900F13FC5 /* SetDeck.m */,
 				83EF2AF21B6FFF3D00FEEB3A /* Images.xcassets */,
 				83EF2AF41B6FFF3D00FEEB3A /* LaunchScreen.xib */,
 				83EF2AE51B6FFF3D00FEEB3A /* Supporting Files */,
@@ -253,11 +263,13 @@
 				83EF2AEB1B6FFF3D00FEEB3A /* AppDelegate.m in Sources */,
 				83EF2AE81B6FFF3D00FEEB3A /* main.m in Sources */,
 				83EF2B101B7003DB00FEEB3A /* PlayingCard.m in Sources */,
+				830503981BF77C3200F13FC5 /* SetCard.m in Sources */,
 				83B0D72B1BE3B1A300451E64 /* CardMatchingGame.m in Sources */,
 				83EF2B161B70C8A100FEEB3A /* PlayingCardDeck.m in Sources */,
 				83EF2B131B70063900FEEB3A /* Deck.m in Sources */,
 				830503951BF779C900F13FC5 /* MatchingCardGameViewController.m in Sources */,
 				83EF2B0D1B70032D00FEEB3A /* Card.m in Sources */,
+				8305039B1BF7A5C900F13FC5 /* SetDeck.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
