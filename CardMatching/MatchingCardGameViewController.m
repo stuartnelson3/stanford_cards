@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 Stuart Nelson. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "MatchingCardGameViewController.h"
 #import "PlayingCardDeck.h"
 #import "CardMatchingGame.h"
 
-@interface ViewController ()
+@interface MatchingCardGameViewController ()
 @property (strong, nonatomic) Deck *deck;
 @property (nonatomic, strong) CardMatchingGame *game;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
@@ -26,7 +26,7 @@ typedef NS_ENUM(NSUInteger, SelectedSegmentIndex) {
     SelectedSegmentIndexThreeCard = 1,
 };
 
-@implementation ViewController
+@implementation MatchingCardGameViewController
 
 - (CardMatchingGame *)game
 {
