@@ -10,7 +10,7 @@
 
 @implementation SetCard
 + (NSArray *)validRanks {
-    return @[@"?", @"A", @"2", @"3"];
+    return @[@"1", @"2", @"3"];
 }
 
 + (NSArray *)validSymbols {
@@ -18,11 +18,11 @@
 }
 
 + (NSArray *)validShading {
-    return @[@"solid", @"striped", @"open"];
+    return @[@"S", @"/", @"O"];
 };
 
 + (NSArray *)validColor {
-    return @[@"purple", @"red", @"green"];
+    return @[@"P", @"R", @"G"];
 };
 
 - (int)match:(NSArray *)otherCards
@@ -70,6 +70,6 @@
 }
 
 - (NSString *)contents {
-    return [NSString stringWithFormat:@"%@%@ %@ %@", self.rank, self.symbol, self.shading, self.color];
+    return [NSString stringWithFormat:@"%@%@%@%@", self.rank, self.symbol, self.shading, self.color];
 }
 @end

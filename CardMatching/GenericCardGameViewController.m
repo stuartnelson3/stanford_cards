@@ -8,11 +8,9 @@
 
 #import "GenericCardGameViewController.h"
 #import "Deck.h"
-#import "CardMatchingGame.h"
 
 @interface GenericCardGameViewController ()
 @property (strong, nonatomic) Deck *deck;
-@property (nonatomic, strong) CardMatchingGame *game;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UIButton *resetButton;
 - (IBAction)resetGame:(id)sender;

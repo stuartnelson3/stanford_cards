@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CardMatchingGame.h"
 
 @interface GenericCardGameViewController : UIViewController
 
+@property (nonatomic, strong) CardMatchingGame *game;
+
+- (Deck *)createDeck;
 
 @end
 

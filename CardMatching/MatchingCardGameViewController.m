@@ -14,6 +14,11 @@
 @end
 
 @implementation MatchingCardGameViewController
+- (void)viewDidLoad
+{
+    [self.game twoCardMode];
+}
+
 - (Deck *)createDeck
 {
     return [[PlayingCardDeck alloc] init];

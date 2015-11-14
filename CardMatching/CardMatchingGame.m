@@ -52,7 +52,7 @@ static const int COST_TO_CHOOSE = 1;
                 continue;
             }
             
-            int matchScore = [card match:@[otherCard]];
+            int matchScore = [card match:@[otherCard, pcard]];
             if (matchScore || pmatch) {
                 if (pcard != nil) {
                     self.score += (matchScore + pmatch) * MATCH_BONUS_THREE_CARD;
@@ -117,8 +117,6 @@ static const int COST_TO_CHOOSE = 1;
 {
     self = [super init];
     if (!self) return self;
-    
-    [self twoCardMode];
     
     for (int i = 0; i < count; i++) {
         Card *card = [deck drawRandomCard];
