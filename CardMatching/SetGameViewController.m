@@ -16,6 +16,7 @@
 @implementation SetGameViewController
 - (void)viewDidLoad
 {
+    self.title = @"Set Game";
     [self.game threeCardMode];
 }
 

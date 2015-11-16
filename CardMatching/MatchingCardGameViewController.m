@@ -16,6 +16,7 @@
 @implementation MatchingCardGameViewController
 - (void)viewDidLoad
 {
+    self.title = @"Matching Card Game";
     [self.game twoCardMode];
 }
 
