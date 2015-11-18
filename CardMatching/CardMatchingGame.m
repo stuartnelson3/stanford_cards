@@ -21,28 +21,38 @@ static const int MATCH_BONUS_TWO_CARD = 4;
 static const int MATCH_BONUS_THREE_CARD = 6;
 static const int COST_TO_CHOOSE = 1;
 
-- (void)chooseCardAtIndex:(NSUInteger)index
+- (NSString *)chooseCardAtIndex:(NSUInteger)index
 {
     Card *card = [self cardAtIndex:index];
-    
+    NSInteger initialScore = self.score;
+    NSString *choices;
     if (!card.isMatched) {
         if (card.isChosen) {
             card.chosen = NO;
         } else {
             if ([self isTwoCardMode]) {
-                [self twoCardChoose:card];
+                choices = [self twoCardChoose:card];
             } else if ([self isThreeCardMode]) {
-                [self threeCardChoose:card];
+                choices = [self threeCardChoose:card];
             }
             self.score -= COST_TO_CHOOSE;
             card.chosen = YES;
         }
     }
+    
+    if (choices == nil) {
+        return choices;
+    }
+    
+    NSInteger difference = self.score - initialScore;
+    return [NSString stringWithFormat:@"%@ (%ld)", choices, (long)difference];
 }
 
-- (void)threeCardChoose:(Card *)card
+- (NSString *)threeCardChoose:(Card *)card
 {
+    NSString *result;
     Card *pcard;
+    NSString *cards;
     int pmatch = 0;
     for (Card *otherCard in self.cards) {
         if (otherCard.isChosen && !otherCard.isMatched) {
@@ -59,32 +69,50 @@ static const int COST_TO_CHOOSE = 1;
                     card.matched = YES;
                     otherCard.matched = YES;
                     pcard.matched = YES;
+                    result = @"matched";
                 }
             } else {
                 self.score -= MISMATCH_PENALTY;
                 otherCard.chosen = NO;
                 pcard.chosen = NO;
+                result = @"not matched";
+                
             }
+            cards = [NSString stringWithFormat:@"%@-%@-%@", card.contents, otherCard.contents, pcard.contents];
         }
     }
+    
+    if (result == nil) {
+        return result;
+    }
+    
+    return [NSString stringWithFormat:@"%@: %@", result, cards];
 }
 
-- (void)twoCardChoose:(Card *)card
+- (NSString *)twoCardChoose:(Card *)card
 {
-    for (Card *otherCard in self.cards) {
+    NSString *result;
+    Card *otherCard;
+    for (otherCard in self.cards) {
         if (otherCard.isChosen && !otherCard.isMatched) {
             int matchScore = [card match:@[otherCard]];
             if (matchScore) {
                 self.score += matchScore * MATCH_BONUS_TWO_CARD;
                 card.matched = YES;
                 otherCard.matched = YES;
+                result = @"matched";
             } else {
                 self.score -= MISMATCH_PENALTY;
                 otherCard.chosen = NO;
+                result = @"not matched";
             }
             break;
         }
     }
+    if (result == nil) {
+        return result;
+    }
+    return [NSString stringWithFormat:@"%@: %@-%@", result, card.contents, otherCard.contents];
 }
 
 - (void)twoCardMode

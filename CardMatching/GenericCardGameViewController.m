@@ -10,6 +10,7 @@
 #import "Deck.h"
 
 @interface GenericCardGameViewController ()
+@property (strong, nonatomic) NSMutableArray *history;
 @property (strong, nonatomic) Deck *deck;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UIButton *resetButton;
@@ -39,6 +40,12 @@ typedef NS_ENUM(NSUInteger, SelectedSegmentIndex) {
     return nil;
 }
 
+- (NSArray *)history
+{
+    if (!_history) _history = [[NSMutableArray alloc] init];
+    return _history;
+}
+
 - (IBAction)touchCardButton:(UIButton *)sender
 {
     if (self.gameMode.userInteractionEnabled) {
@@ -46,25 +53,37 @@ typedef NS_ENUM(NSUInteger, SelectedSegmentIndex) {
         self.gameMode.tintColor = [UIColor grayColor];
     }
     
-    int cardIndex = [self.cardButtons indexOfObject:sender];
-    [self.game chooseCardAtIndex:cardIndex];
+    NSInteger cardIndex = [self.cardButtons indexOfObject:sender];
+    NSString *result = [self.game chooseCardAtIndex:cardIndex];
+
+    if (result != nil) {
+        [self.history addObject:result];
+    }
     [self updateUI];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"history"]) {
+        if ([segue.destinationViewController isKindOfClass:[HistoryViewController class]]) {
+            HistoryViewController *hvc = (HistoryViewController *)segue.destinationViewController;
+            hvc.history = [[NSArray alloc] initWithArray:self.history];
+        }
+    }
+}
 
 - (IBAction)resetGame:(id)sender
 {
     _game = nil;
+    _history = nil;
+    
     [self updateUI];
     self.gameMode.userInteractionEnabled = YES;
     self.gameMode.tintColor = [UIColor whiteColor];
     [self setup];
 }
 
-- (void) setup
-{
-    
-}
+- (void) setup{}
 
 - (void)updateUI
 {
