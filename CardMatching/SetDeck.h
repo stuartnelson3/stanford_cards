@@ -10,5 +10,5 @@
 #import "SetCard.h"
 
 @interface SetDeck : Deck
-
+- (instancetype) initWithColors:(NSArray *)colors withSymbols:(NSArray *)symbols;
 @end

@@ -58,6 +58,12 @@ typedef NS_ENUM(NSUInteger, SelectedSegmentIndex) {
     [self updateUI];
     self.gameMode.userInteractionEnabled = YES;
     self.gameMode.tintColor = [UIColor whiteColor];
+    [self setup];
+}
+
+- (void) setup
+{
+    
 }
 
 - (void)updateUI
@@ -65,16 +71,20 @@ typedef NS_ENUM(NSUInteger, SelectedSegmentIndex) {
     for (UIButton *button in self.cardButtons) {
         int cardIndex = (int)[self.cardButtons indexOfObject:button];
         Card *card = [self.game cardAtIndex:cardIndex];
-        [button setTitle:[self titleForCard:card] forState:UIControlStateNormal];
+        [button setAttributedTitle:[self titleForCard:card] forState:UIControlStateNormal];
         [button setBackgroundImage:[self backgroundImageForCard:card] forState:UIControlStateNormal];
         button.enabled = !card.isMatched;
     }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", (long)self.game.score];
 }
 
-- (NSString *)titleForCard:(Card *)card
+- (NSMutableAttributedString *)titleForCard:(Card *)card
 {
-    return card.isChosen ? card.contents : @"";
+    if (card.isChosen) {
+        return [[NSMutableAttributedString alloc] initWithString:card.contents];
+    }
+    
+    return [[NSMutableAttributedString alloc] initWithString:@""];
 }
 
 - (UIImage *)backgroundImageForCard:(Card *)card

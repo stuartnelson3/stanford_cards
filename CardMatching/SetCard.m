@@ -13,16 +13,16 @@
     return @[@"1", @"2", @"3"];
 }
 
-+ (NSArray *)validSymbols {
-    return @[@"♒︎", @"☽", @"♦︎"];
-}
-
 + (NSArray *)validShading {
-    return @[@"S", @"/", @"O"];
+    return @[@"solid", @"striped", @"open"];
 };
 
++ (NSArray *)validSymbols {
+    return @[@"◼︎", @"▲", @"●"];
+}
+
 + (NSArray *)validColor {
-    return @[@"P", @"R", @"G"];
+    return @[@"purple", @"red", @"green"];
 };
 
 - (int)match:(NSArray *)otherCards
@@ -70,6 +70,6 @@
 }
 
 - (NSString *)contents {
-    return [NSString stringWithFormat:@"%@%@%@%@", self.rank, self.symbol, self.shading, self.color];
+    return [NSString stringWithFormat:@"%@%@", self.rank, self.symbol];
 }
 @end

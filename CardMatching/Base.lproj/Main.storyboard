@@ -528,10 +528,10 @@
             </objects>
             <point key="canvasLocation" x="393" y="-183"/>
         </scene>
-        <!--Item-->
+        <!--Set Game-->
         <scene sceneID="lRc-d9-XuO">
             <objects>
-                <viewController id="1RO-jI-ho8" customClass="SetGameViewController" sceneMemberID="viewController">
+                <viewController title="Set Game" id="1RO-jI-ho8" customClass="SetGameViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Hhs-lo-qtZ"/>
                         <viewControllerLayoutGuide type="bottom" id="yjB-F4-qB0"/>
@@ -862,7 +862,7 @@
                         <animations/>
                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="Prt-CE-aHb"/>
+                    <tabBarItem key="tabBarItem" title="Set Game" id="Prt-CE-aHb"/>
                     <connections>
                         <outlet property="scoreLabel" destination="8On-jc-d4u" id="e0f-55-gVX"/>
                         <outletCollection property="cardButtons" destination="gfR-zB-LP6" id="jAA-Kd-R3o"/>

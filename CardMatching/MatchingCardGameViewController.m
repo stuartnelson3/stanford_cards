@@ -17,6 +17,11 @@
 - (void)viewDidLoad
 {
     self.title = @"Matching Card Game";
+    [self setup];
+}
+
+- (void)setup
+{
     [self.game twoCardMode];
 }
 
